@@ -17,8 +17,9 @@ const Login = ({setAuth}) => {
 
     const onSubmitForm = async (e) => {
         e.preventDefault()
+        const token = localStorage.token;
         try {
-            const body = {username, password}
+            const body = {username, password, token}
 
             const response = await fetch("https://flutter-app-api.onrender.com/signin",
                 {
@@ -29,8 +30,11 @@ const Login = ({setAuth}) => {
             );
 
             const parseResponse = await response.json();
-            console.log(parseResponse);
-            localStorage.setItem("token", parseResponse.token);
+            console.log("login",parseResponse.token);
+            //if (!localStorage.token){
+                localStorage.setItem("token", parseResponse.token);    
+            //}
+            
             setAuth(true);
             
         } catch (error) {

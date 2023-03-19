@@ -1,6 +1,7 @@
 
 import { Fragment, useState, useEffect } from 'react';
 import './App.css';
+//import axios from 'axios';
 import {BrowserRouter as Router,
    Routes,
    Route,
@@ -29,14 +30,19 @@ function App() {
       //await fetch("http://localhost:5000/auth/is-verify",
         {
           method: "Get",
-          headers:
-            {Authorization: { token: localStorage.token } }
+          headers: 
+          {
+            "Content-Type" : "application/json",
+            "Authorization": `Bearer ${localStorage.token}`
+          }
+           
         }
       );
       const parseResponse = await response.json();
       
-      console.log("auth:",parseResponse);
-      parseResponse === true ? setAuth(true) : setAuth(false);
+      console.log("auth:",parseResponse.message);
+      console.log(localStorage.token);
+      parseResponse.message === true ? setAuth(true) : setAuth(false);
     } catch (error) {
       console.error(error.message);
     }
@@ -50,7 +56,7 @@ function App() {
             method: "GET",
             headers: {token : localStorage.token}
         });
-        const parseResponse = await response.json(); //returns a name
+        const parseResponse = await response.json(); 
         setConcurrentUsers(parseResponse);
         
     } catch (error) {

@@ -29,7 +29,7 @@ const Register = ({setAuth}) => {
 
             const parseResponse = await response.json();
             console.log(parseResponse);
-            localStorage.setItem("token", parseResponse.token);
+            //localStorage.setItem("token", parseResponse.token);
             setAuth(true);
 
         } catch (error) {

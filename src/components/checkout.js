@@ -41,6 +41,8 @@ const Checkout = ({setAuth}) => {
                 Open
                 </button>
 
+                <button onClick={logout}>Logout</button>
+
       {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </Fragment>
     );
