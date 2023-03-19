@@ -1,7 +1,11 @@
 import React from "react";
-import "./Modal.css";
+import "./modal.css";
 
 function Modal({ setOpenModal }) {
+
+  const handleBuyAgain = () => {
+    window.location.replace('/waitingroom');
+  }
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -15,10 +19,10 @@ function Modal({ setOpenModal }) {
           </button>
         </div>
         <div className="title">
-          <h1>Are You Sure You Want to Continue?</h1>
+          <h1>Checkout Complete</h1>
         </div>
         <div className="body">
-          <p>The next page looks amazing. Hope you want to go there!</p>
+          <p>Hope to see you back soon!</p>
         </div>
         <div className="footer">
           <button
@@ -27,10 +31,14 @@ function Modal({ setOpenModal }) {
             }}
             id="cancelBtn"
           >
-            Cancel
+            OK
           </button>
-          <button>Continue</button>
-        </div>
+          <button
+            onClick={handleBuyAgain}
+          >
+            Buy Again?
+          </button>
+          </div>
       </div>
     </div>
   );

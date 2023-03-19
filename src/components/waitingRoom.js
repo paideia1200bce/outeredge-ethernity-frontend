@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 const WaitingRoom = ({setAuth, concurrentUsers}) => {
 
     
-    const [waitTime, setWaitTime] = useState(0);
+    const [waitTime, setWaitTime] = useState(30);
     
 
     
     async function getWaitTime() {
         try {
-            const response = await fetch('http://localhost:5000/dashboard',{
+            const response = await fetch('http://localhost:5000/waitime',{
                 method: "GET",
                 headers: {token : localStorage.token}
             });
@@ -34,8 +34,7 @@ const WaitingRoom = ({setAuth, concurrentUsers}) => {
             <h1  className="text-center my-5">Waiting Room</h1>
             <h1>Place in line: {concurrentUsers}</h1>
             <h1>Time Remaining: {waitTime}</h1>
-            <Link className= "btn btn-success my-5" to="../checkout"> Checkout </Link>
-            <button className="btn btn-primary my-5" onClick={(e) => logout(e)}> Logout </button>
+            <button className="btn btn-danger my-5" onClick={(e) => logout(e)}> Cancel </button>
         </Fragment>
     );
 };

@@ -1,11 +1,12 @@
 import React, {Fragment, useState, useEffect} from "react";
 import { Link } from "react-router-dom"
-
+import Modal from "./modal/modal.js";
 const Checkout = ({setAuth}) => {
 
     const [time, setTimer] = useState('');
     const [checkoutSuccess, setCheckoutSuccess] = useState(false);
-    
+    const [modalOpen, setModalOpen] = useState(false);
+
     async function getTime() {
         try {
             const response = await fetch('http://localhost:5000/dashboard',{
@@ -27,24 +28,22 @@ const Checkout = ({setAuth}) => {
     }
     useEffect(() => {
     },[])
-    const handleCheckout = () => {
-        //verify info here before checkout
-        console.log("modal")
-        setCheckoutSuccess(true);
-        };
+
     return(
         <Fragment>
-            <h1>Checkout</h1>
-            <button className="btn btn-success btn-block my-5" onClick={handleCheckout}> Checkout </button>
-            <button className="btn btn-primary my-5" onClick={(e) => logout(e)}> Logout </button>
-            { (
-                    <div className="modal">
-                    <div className="modal-content">
-                        <p>Congratulations! Your checkout was successful.</p>
-                    </div>
-                    </div>
-                )
-            }
+            <h1 className="text-center">Checkout</h1>
+            <button
+                className="openModalBtn btn btn-primary my-5 btn-block"
+                onClick={() => {
+                    setModalOpen(true);
+                }}
+                >
+                Purchase
+                </button>
+
+                <button className="btn btn-danger my-5" onClick={logout}>Logout</button>
+
+      {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </Fragment>
     );
 };
