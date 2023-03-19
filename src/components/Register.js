@@ -28,7 +28,7 @@ const Register = ({setAuth}) => {
             );
 
             const parseResponse = await response.json();
-            console.log(parseResponse);
+            console.log('register res', parseResponse);
             //localStorage.setItem("token", parseResponse.token);
             setAuth(true);
 
@@ -59,7 +59,7 @@ const Register = ({setAuth}) => {
                 
                 <button className="btn btn-success btn-block"> Submit </button>
             </form>
-            <Link to="../login"> Login </Link>
+            <Link to="../testlogin"> Login </Link>
         </Fragment>
     );
 };

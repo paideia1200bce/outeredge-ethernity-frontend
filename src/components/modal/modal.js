@@ -2,6 +2,10 @@ import React from "react";
 import "./modal.css";
 
 function Modal({ setOpenModal }) {
+
+  const handleBuyAgain = () => {
+    window.location.replace('/waitingroom');
+  }
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -28,6 +32,11 @@ function Modal({ setOpenModal }) {
             id="cancelBtn"
           >
             OK
+          </button>
+          <button
+            onClick={handleBuyAgain}
+          >
+            Buy Again?
           </button>
           </div>
       </div>

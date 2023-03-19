@@ -31,17 +31,17 @@ const Checkout = ({setAuth}) => {
 
     return(
         <Fragment>
-            <h1>Checkout</h1>
+            <h1 className="text-center">Checkout</h1>
             <button
-                className="openModalBtn"
+                className="openModalBtn btn btn-primary my-5 btn-block"
                 onClick={() => {
                     setModalOpen(true);
                 }}
                 >
-                Open
+                Purchase
                 </button>
 
-                <button onClick={logout}>Logout</button>
+                <button className="btn btn-danger my-5" onClick={logout}>Logout</button>
 
       {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </Fragment>

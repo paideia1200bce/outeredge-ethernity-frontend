@@ -30,7 +30,7 @@ const Login = ({setAuth}) => {
             );
 
             const parseResponse = await response.json();
-            console.log("login",parseResponse.token);
+            console.log("login res",parseResponse);
             //if (!localStorage.token){
                 localStorage.setItem("token", parseResponse.token);    
             //}
