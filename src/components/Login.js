@@ -4,12 +4,12 @@ import { Link } from "react-router-dom"
 const Login = ({setAuth}) => {
 
     const [inputs, setInputs] = useState({
-        user_email: " ",
-        user_password: ""
+        username: " ",
+        password: ""
     
     });
 
-    const {user_email, user_password} = inputs;
+    const {username, password} = inputs;
 
     const onChange = (e) => {
         setInputs({...inputs, [e.target.name] : e.target.value})
@@ -18,9 +18,9 @@ const Login = ({setAuth}) => {
     const onSubmitForm = async (e) => {
         e.preventDefault()
         try {
-            const body = {user_email, user_password}
+            const body = {username, password}
 
-            const response = await fetch("http://localhost:5000/auth/login",
+            const response = await fetch("https://flutter-app-api.onrender.com/signin",
                 {
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
@@ -32,7 +32,7 @@ const Login = ({setAuth}) => {
             console.log(parseResponse);
             localStorage.setItem("token", parseResponse.token);
             setAuth(true);
-
+            
         } catch (error) {
             console.error(error.message)
             
@@ -45,18 +45,18 @@ const Login = ({setAuth}) => {
             <form onSubmit={onSubmitForm}>
                 <input
                 type="email" 
-                name="user_email" 
+                name="username" 
                 placeholder="email" 
                 className="form-control my-3" 
-                value={user_email}
+                value={username}
                 onChange = {e => onChange(e)}
                 />
                 <input 
                 type="password"
-                name="user_password"
+                name="password"
                 placeholder="password"
                 className="form-control my-3"
-                value={user_password}
+                value={password}
                 onChange = {e => onChange(e)}
                 />
                 <button className="btn btn-success btn-block" > Login </button>

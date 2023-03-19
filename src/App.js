@@ -25,13 +25,17 @@ function App() {
 
   async function checkAuth() {
     try {
-      const response = await fetch("http://localhost:5000/auth/is-verify",
+      const response = await fetch("https://flutter-app-api.onrender.com/auth", 
+      //await fetch("http://localhost:5000/auth/is-verify",
         {
           method: "Get",
-          headers: { token: localStorage.token }
+          headers:
+            {Authorization: { token: localStorage.token } }
         }
       );
       const parseResponse = await response.json();
+      
+      console.log("auth:",parseResponse);
       parseResponse === true ? setAuth(true) : setAuth(false);
     } catch (error) {
       console.error(error.message);
@@ -39,7 +43,7 @@ function App() {
   }
   useEffect(() => {
     checkAuth();
-  },[])
+  });
   async function getConcurrentUsers() {
     try {
         const response = await fetch('http://localhost:5000/dashboard',{

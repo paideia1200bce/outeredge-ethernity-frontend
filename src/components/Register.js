@@ -3,13 +3,12 @@ import { Link } from "react-router-dom"
 
 const Register = ({setAuth}) => {
     const [inputs, setInputs] = useState({
-        user_email: " ",
-        user_name: " ",
-        user_password: ""
-    
+        username: " ",
+        password: "",
+        queue_id: '1'
     })
-
-    const {user_email, user_password, user_name} = inputs;
+     
+    const {username, password, queue_id} = inputs;
     const onChange = (e) => {
         setInputs({...inputs, [e.target.name] : e.target.value})
     }
@@ -17,9 +16,10 @@ const Register = ({setAuth}) => {
     const onSubmitForm = async (e) => {
         e.preventDefault()
         try {
-            const body = {user_email, user_password, user_name}
+            const body = {username, password, queue_id}
  
-            const response = await fetch("http://localhost:5000/auth/register",
+            const response = //await fetch("https://localhost:5000/auth/register", 
+            await fetch("https://flutter-app-api.onrender.com/signup",
                 {
                     method: "POST",
                     headers: {"Content-Type" : "application/json"},
@@ -42,28 +42,21 @@ const Register = ({setAuth}) => {
             <form onSubmit={onSubmitForm}>
                 <input 
                 type="email" 
-                name="user_email" 
+                name="username" 
                 placeholder="email" 
                 className="form-control my-3" 
-                value={user_email}
+                value={username}
                 onChange = {e => onChange(e)}
                 />
                 <input 
                 type="password"
-                name="user_password"
+                name="password"
                 placeholder="password"
                 className="form-control my-3"
-                value={user_password}
+                value={password}
                 onChange = {e => onChange(e)}
                 />
-                <input 
-                type="text" 
-                name="user_name" 
-                placeholder="name" 
-                className="form-control my-3"
-                value={user_name}
-                onChange = {e => onChange(e)}
-                />
+                
                 <button className="btn btn-success btn-block"> Submit </button>
             </form>
             <Link to="../login"> Login </Link>
